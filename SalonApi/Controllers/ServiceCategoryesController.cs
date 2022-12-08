@@ -29,9 +29,9 @@ namespace SalonApi.Controllers
 
         // GET: api/ServiceCategoryes/5
         [HttpGet("{categoryId}")]
-        public async Task<ActionResult<ServiceCategoryes>> GetServiceCategoryes(int id)
+        public async Task<ActionResult<ServiceCategoryes>> GetServiceCategoryes(int categoryId)
         {
-            var serviceCategoryes = await _context.ServiceCategoryes.FindAsync(id);
+            var serviceCategoryes = await _context.ServiceCategoryes.FindAsync(categoryId);
 
             if (serviceCategoryes == null)
             {
