@@ -28,10 +28,24 @@ namespace SalonApi.Controllers
         }
 
         // GET: api/Services/5
-        [HttpGet("{categoryId}")]
-        public async Task<ActionResult<IEnumerable<Services>>> GetServices(int categoryId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<Services>>> GetServices(int id)
         {
-            var services = await _context.Services.Where(x=>x.CategoryId == categoryId).ToListAsync();
+            var services = await _context.Services.Where(x=>x.Id == id).ToListAsync();
+
+            if (services == null)
+            {
+                return NotFound();
+            }
+
+            return services;
+        }
+
+        // GET: api/Services/categories/5
+        [HttpGet("Categories/{categoryid}")]
+        public async Task<ActionResult<List<Services>>> GetServicesCategories(int categoryId)
+        {
+            var services = await _context.Services.Where(o => o.CategoryId == categoryId).ToListAsync();
 
             if (services == null)
             {
